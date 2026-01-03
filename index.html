@@ -63,7 +63,43 @@
             position: relative;
         }
 
-        /* Navigation */
+        /* Enhanced Section Transitions */
+        .section-wrapper {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section-wrapper.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-wrapper.delayed {
+            transition-delay: 0.2s;
+        }
+
+        /* Section-specific animation delays */
+        .education .section-wrapper,
+        .projects .section-wrapper,
+        .skills .section-wrapper,
+        .experience .section-wrapper,
+        .contact .section-wrapper {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .education .section-wrapper.visible,
+        .projects .section-wrapper.visible,
+        .skills .section-wrapper.visible,
+        .experience .section-wrapper.visible,
+        .contact .section-wrapper.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Enhanced Navigation with smooth animations */
         .nav {
             position: fixed;
             top: 0;
@@ -72,11 +108,17 @@
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border);
             z-index: 1000;
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0);
+        }
+
+        .nav.hidden {
+            transform: translateY(-100%);
         }
 
         .nav.scrolled {
             box-shadow: var(--shadow);
+            background: rgba(255, 255, 255, 0.95);
         }
 
         .nav-container {
@@ -84,6 +126,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 24px;
+            transition: var(--transition);
         }
 
         .logo {
@@ -100,6 +143,21 @@
             transform: translateY(-2px);
         }
 
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
+        }
+
         .nav-links {
             display: flex;
             list-style: none;
@@ -113,7 +171,7 @@
             font-size: 0.95rem;
             position: relative;
             padding: 8px 0;
-            transition: var(--transition);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav-links a::after {
@@ -142,14 +200,15 @@
             font-size: 1.5rem;
             color: var(--text);
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .menu-toggle:hover {
             color: var(--primary);
+            transform: scale(1.1);
         }
 
-        /* Hero Section */
+        /* Enhanced Hero Section with parallax effect */
         .hero {
             padding: 180px 0 120px;
             background: linear-gradient(135deg, #FAF8F5 0%, #F5F1EA 100%);
@@ -168,10 +227,17 @@
             background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%235d8aa8' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
             opacity: 0.3;
             z-index: 0;
+            animation: parallax 20s linear infinite;
+        }
+
+        @keyframes parallax {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
         }
 
         .hero-container {
-            max-width: 800px;
+            max-width: 950px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
@@ -189,13 +255,25 @@
             font-weight: 500;
             margin-bottom: 30px;
             box-shadow: 0 4px 20px rgba(93, 138, 168, 0.2);
-            animation: float 3s ease-in-out infinite;
-            transition: var(--transition);
+            animation: float 3s ease-in-out infinite, badgePulse 2s ease-in-out infinite alternate;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-5px) rotate(1deg); }
+            75% { transform: translateY(5px) rotate(-1deg); }
+        }
+
+        @keyframes badgePulse {
+            0% { box-shadow: 0 4px 20px rgba(93, 138, 168, 0.2); }
+            100% { box-shadow: 0 8px 30px rgba(93, 138, 168, 0.4); }
+        }
+
+        .hero-badge:hover {
+            transform: scale(1.05) rotate(3deg);
+            animation: none;
         }
 
         .hero-title {
@@ -204,7 +282,7 @@
             color: var(--text);
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
         .hero-subtitle {
@@ -214,7 +292,7 @@
             font-weight: 500;
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeInUp 0.8s ease 0.2s forwards;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
         }
 
         .hero-description {
@@ -222,12 +300,12 @@
             color: var(--text-light);
             margin-bottom: 40px;
             line-height: 1.8;
-            max-width: 700px;
+            max-width: 1500px;
             margin-left: auto;
             margin-right: auto;
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeInUp 0.8s ease 0.4s forwards;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
         }
 
         @keyframes fadeInUp {
@@ -237,7 +315,7 @@
             }
         }
 
-        /* Section Headers */
+        /* Enhanced Section Headers */
         .section-header {
             text-align: center;
             margin-bottom: 70px;
@@ -256,12 +334,14 @@
             padding: 8px 20px;
             background: rgba(93, 138, 168, 0.1);
             border-radius: 50px;
-            transition: var(--transition);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
         }
 
         .section-label:hover {
             background: rgba(93, 138, 168, 0.2);
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(93, 138, 168, 0.1);
         }
 
         .section-title {
@@ -282,6 +362,12 @@
             height: 3px;
             background: var(--gradient);
             border-radius: 3px;
+            animation: lineGrow 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes lineGrow {
+            from { width: 0; }
+            to { width: 80px; }
         }
 
         .section-subtitle {
@@ -294,7 +380,7 @@
             padding: 0 20px;
         }
 
-        /* Education Section */
+        /* Enhanced Education Section */
         .education-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -308,7 +394,7 @@
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
@@ -321,22 +407,30 @@
             width: 5px;
             height: 100%;
             background: var(--gradient);
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: top;
         }
 
         .edu-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
             box-shadow: var(--shadow-hover);
         }
 
         .edu-card:hover::before {
             width: 8px;
+            height: 100%;
+            background: var(--gradient-accent);
         }
 
         .edu-header {
             display: flex;
             align-items: center;
             margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .edu-card:hover .edu-header {
+            transform: translateX(5px);
         }
 
         .edu-icon {
@@ -350,17 +444,23 @@
             justify-content: center;
             margin-right: 20px;
             font-size: 1.2rem;
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .edu-card:hover .edu-icon {
             transform: scale(1.1) rotate(5deg);
+            background: var(--gradient-accent);
         }
 
         .edu-title {
             font-size: 1.4rem;
             margin-bottom: 5px;
             color: var(--text);
+            transition: var(--transition);
+        }
+
+        .edu-card:hover .edu-title {
+            color: var(--primary);
         }
 
         .edu-subtitle {
@@ -379,12 +479,14 @@
             font-weight: 500;
             margin-bottom: 20px;
             border: 1px solid rgba(93, 138, 168, 0.2);
-            transition: var(--transition);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .edu-card:hover .edu-date {
             background: var(--gradient);
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(93, 138, 168, 0.2);
         }
 
         .edu-list {
@@ -397,12 +499,12 @@
             position: relative;
             color: var(--text-light);
             line-height: 1.6;
-            transition: var(--transition);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .edu-list li:hover {
             color: var(--text);
-            transform: translateX(5px);
+            transform: translateX(10px);
         }
 
         .edu-list li::before {
@@ -416,9 +518,10 @@
 
         .edu-list li:hover::before {
             color: var(--accent);
+            transform: scale(1.2);
         }
 
-        /* Projects Section */
+        /* Enhanced Projects Section with Slide-based Navigation */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -431,7 +534,7 @@
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -449,7 +552,7 @@
             bottom: 0;
             background: var(--gradient);
             opacity: 0;
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1;
         }
 
@@ -458,8 +561,8 @@
         }
 
         .project-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: var(--shadow-hover);
+            transform: translateY(-10px) scale(1.02) rotate(1deg);
+            box-shadow: 0 20px 40px rgba(93, 138, 168, 0.15);
         }
 
         .project-image {
@@ -472,11 +575,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .project-card:hover .project-image img {
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(0.5deg);
         }
 
         .project-content {
@@ -492,11 +595,12 @@
             font-size: 1.4rem;
             margin-bottom: 15px;
             color: var(--text);
-            transition: var(--transition);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .project-card:hover .project-title {
             color: var(--primary);
+            transform: translateX(5px);
         }
 
         .project-description {
@@ -505,6 +609,7 @@
             flex-grow: 1;
             line-height: 1.6;
             font-size: 0.95rem;
+            transition: var(--transition);
         }
 
         .project-tech {
@@ -522,13 +627,32 @@
             font-size: 0.85rem;
             font-weight: 500;
             border: 1px solid rgba(93, 138, 168, 0.2);
-            transition: var(--transition);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
         }
 
         .tech-tag:hover {
             background: var(--gradient);
             color: white;
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(93, 138, 168, 0.2);
+        }
+
+        .tech-tag:hover::before {
+            left: 0;
         }
 
         .project-link {
@@ -539,7 +663,7 @@
             text-decoration: none;
             font-weight: 600;
             margin-top: auto;
-            transition: var(--transition);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-size: 0.95rem;
             padding: 10px 0;
             position: relative;
@@ -549,9 +673,375 @@
         .project-link:hover {
             gap: 15px;
             color: var(--primary-dark);
+            transform: translateX(5px);
         }
 
-        /* Skills Section */
+        .project-detail-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            z-index: 2000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .project-detail-container.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .project-detail-content {
+            width: 100%;
+            min-height: 100vh;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -40%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .project-detail-header {
+            background: var(--gradient);
+            color: white;
+            padding: 35px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-detail-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.2;
+            animation: parallax 20s linear infinite;
+        }
+
+        .project-detail-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .project-detail-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .project-detail-title {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            animation: titleSlide 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes titleSlide {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-detail-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            animation: subtitleSlide 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes subtitleSlide {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-detail-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+            animation: techSlide 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes techSlide {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-detail-tech-tag {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-detail-tech-tag:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        .project-detail-body {
+            padding: 40px;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .project-detail-section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .project-detail-section:nth-child(1) { animation-delay: 0.5s; }
+        .project-detail-section:nth-child(2) { animation-delay: 0.6s; }
+        .project-detail-section:nth-child(3) { animation-delay: 0.7s; }
+        .project-detail-section:nth-child(4) { animation-delay: 0.8s; }
+        .project-detail-section:nth-child(5) { animation-delay: 0.9s; }
+        .project-detail-section:nth-child(6) { animation-delay: 1s; }
+
+        .project-detail-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text);
+            padding-bottom: 10px;
+            border-bottom: 2px solid #F5F1EA;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .project-detail-section:hover h3 {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .project-detail-section h3 i {
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .project-detail-section:hover h3 i {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .project-detail-section p {
+            color: var(--text);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            transition: var(--transition);
+        }
+
+        .project-detail-section:hover p {
+            transform: translateX(2px);
+        }
+
+        .project-detail-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .project-detail-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 1.05rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-detail-list li:hover {
+            color: var(--primary);
+            transform: translateX(10px);
+        }
+
+        .project-detail-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.3rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-detail-list li:hover::before {
+            color: var(--accent);
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .project-detail-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .project-detail-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(93, 138, 168, 0.2);
+        }
+
+        .project-detail-link-btn:hover {
+            transform: translateY(-3px) scale(1.05) rotate(1deg);
+            box-shadow: 0 8px 25px rgba(93, 138, 168, 0.3);
+            gap: 12px;
+        }
+
+        .project-detail-link-btn.secondary {
+            background: rgba(93, 138, 168, 0.1);
+            color: var(--primary);
+        }
+
+        .project-detail-link-btn.secondary:hover {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .project-detail-navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 25px 40px;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+        }
+
+        .project-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(93, 138, 168, 0.2);
+            border: none;
+            cursor: pointer;
+        }
+
+        .project-nav-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(93, 138, 168, 0.3);
+            gap: 15px;
+        }
+
+        .project-nav-btn.prev {
+            background: rgba(93, 138, 168, 0.1);
+            color: var(--primary);
+        }
+
+        .project-nav-btn.prev:hover {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .project-detail-image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .project-detail-image {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            border: 1px solid var(--border);
+        }
+
+        .project-detail-image:hover {
+            transform: translateY(-5px) scale(1.02) rotate(0.5deg);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-detail-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-detail-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Enhanced Skills Section with progress bars */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -565,7 +1055,7 @@
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
@@ -579,7 +1069,7 @@
             bottom: 0;
             background: var(--gradient);
             opacity: 0;
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .skill-category:hover::before {
@@ -587,7 +1077,7 @@
         }
 
         .skill-category:hover {
-            transform: translateY(-5px) scale(1.02);
+            transform: translateY(-5px) scale(1.02) rotate(-0.5deg);
             box-shadow: var(--shadow-hover);
         }
 
@@ -600,15 +1090,22 @@
             gap: 12px;
             position: relative;
             z-index: 1;
+            transition: var(--transition);
+        }
+
+        .skill-category:hover h3 {
+            transform: translateX(5px);
+            color: var(--primary);
         }
 
         .skill-category h3 i {
             color: var(--primary);
-            transition: var(--transition);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .skill-category:hover h3 i {
-            transform: scale(1.2);
+            transform: scale(1.2) rotate(10deg);
+            color: var(--accent);
         }
 
         .skill-tags {
@@ -640,21 +1137,21 @@
             width: 100%;
             height: 100%;
             background: var(--gradient);
-            transition: left 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: -1;
         }
 
         .skill-tag:hover {
             color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(93, 138, 168, 0.2);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(93, 138, 168, 0.2);
         }
 
         .skill-tag:hover::before {
             left: 0;
         }
 
-        /* Experience Section */
+        /* Enhanced Experience Section */
         .experience-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -668,7 +1165,7 @@
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
@@ -682,7 +1179,7 @@
             bottom: 0;
             background: var(--gradient);
             opacity: 0;
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .exp-card:hover::before {
@@ -690,7 +1187,7 @@
         }
 
         .exp-card:hover {
-            transform: translateY(-5px) scale(1.02);
+            transform: translateY(-5px) scale(1.02) rotate(0.5deg);
             box-shadow: var(--shadow-hover);
         }
 
@@ -705,13 +1202,14 @@
             justify-content: center;
             margin-bottom: 20px;
             font-size: 1.3rem;
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             z-index: 1;
         }
 
         .exp-card:hover .exp-icon {
             transform: scale(1.1) rotate(5deg);
+            background: var(--gradient-accent);
         }
 
         .exp-title {
@@ -720,6 +1218,12 @@
             color: var(--text);
             position: relative;
             z-index: 1;
+            transition: var(--transition);
+        }
+
+        .exp-card:hover .exp-title {
+            color: var(--primary);
+            transform: translateX(5px);
         }
 
         .exp-subtitle {
@@ -729,6 +1233,11 @@
             margin-bottom: 10px;
             position: relative;
             z-index: 1;
+            transition: var(--transition);
+        }
+
+        .exp-card:hover .exp-subtitle {
+            transform: translateX(5px);
         }
 
         .exp-date {
@@ -742,11 +1251,13 @@
             padding: 6px 16px;
             background: rgba(93, 138, 168, 0.1);
             border-radius: 50px;
-            transition: var(--transition);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .exp-card:hover .exp-date {
             background: rgba(93, 138, 168, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(93, 138, 168, 0.1);
         }
 
         .exp-description {
@@ -755,9 +1266,14 @@
             font-size: 0.95rem;
             position: relative;
             z-index: 1;
+            transition: var(--transition);
         }
 
-        /* Contact Section */
+        .exp-card:hover .exp-description {
+            transform: translateX(5px);
+        }
+
+        /* Enhanced Contact Section */
         .contact-section {
             background: var(--card-bg);
             padding: 70px 60px;
@@ -768,6 +1284,12 @@
             margin: 70px 0;
             position: relative;
             overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .contact-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(93, 138, 168, 0.15);
         }
 
         .contact-section::before {
@@ -780,6 +1302,11 @@
             background: var(--gradient);
             opacity: 0.03;
             z-index: 0;
+            transition: var(--transition);
+        }
+
+        .contact-section:hover::before {
+            opacity: 0.05;
         }
 
         .contact-title {
@@ -788,6 +1315,12 @@
             color: var(--text);
             position: relative;
             z-index: 1;
+            transition: var(--transition);
+        }
+
+        .contact-section:hover .contact-title {
+            color: var(--primary);
+            transform: translateY(-2px);
         }
 
         .contact-text {
@@ -800,6 +1333,11 @@
             line-height: 1.7;
             position: relative;
             z-index: 1;
+            transition: var(--transition);
+        }
+
+        .contact-section:hover .contact-text {
+            transform: translateY(-2px);
         }
 
         .contact-buttons {
@@ -811,7 +1349,7 @@
             z-index: 1;
         }
 
-        /* Buttons */
+        /* Enhanced Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -838,7 +1376,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.7s ease;
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .btn:hover::before {
@@ -852,8 +1390,8 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 12px 30px rgba(93, 138, 168, 0.3);
+            transform: translateY(-3px) scale(1.05) rotate(1deg);
+            box-shadow: 0 15px 35px rgba(93, 138, 168, 0.3);
         }
 
         .btn-secondary {
@@ -865,11 +1403,11 @@
 
         .btn-secondary:hover {
             background: rgba(93, 138, 168, 0.05);
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 12px 25px rgba(93, 138, 168, 0.15);
+            transform: translateY(-3px) scale(1.05) rotate(-1deg);
+            box-shadow: 0 15px 30px rgba(93, 138, 168, 0.15);
         }
 
-        /* Footer */
+        /* Enhanced Footer */
         .footer {
             background: #2C3E50;
             color: white;
@@ -888,6 +1426,7 @@
             background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
             opacity: 0.3;
             z-index: 0;
+            animation: parallax 30s linear infinite;
         }
 
         .footer-content {
@@ -903,11 +1442,13 @@
             font-size: 2rem;
             margin-bottom: 20px;
             color: white;
-            transition: var(--transition);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
         }
 
         .footer-logo:hover {
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.05);
+            text-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
         }
 
         .footer-text {
@@ -918,6 +1459,7 @@
             margin-left: auto;
             margin-right: auto;
             line-height: 1.7;
+            transition: var(--transition);
         }
 
         .footer-social {
@@ -951,13 +1493,13 @@
             width: 100%;
             height: 100%;
             background: var(--gradient);
-            transition: left 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: -1;
         }
 
         .social-link:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px) scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         .social-link:hover::before {
@@ -972,11 +1514,11 @@
             font-size: 0.9rem;
             position: relative;
             z-index: 1;
+            transition: var(--transition);
         }
 
-        /* Project Modal */
-        .modal {
-            display: none;
+        /* Image Preview Modal */
+        .image-modal {
             position: fixed;
             top: 0;
             left: 0;
@@ -984,63 +1526,47 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(10px);
-            z-index: 2000;
-            overflow-y: auto;
-            padding: 20px;
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
-        .modal.show {
+        .image-modal.active {
+            display: flex;
             opacity: 1;
         }
 
-        .modal-content {
-            background: var(--card-bg);
-            max-width: 900px;
-            margin: 40px auto;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            animation: modalSlideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-            border: 1px solid var(--border);
-            transform: translateY(30px);
-            opacity: 0;
+        .image-modal-content {
+            max-width: 90%;
+            max-height: 90vh;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: imageModalIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
 
-        @keyframes modalSlideIn {
+        @keyframes imageModalIn {
+            from {
+                transform: translateY(30px) scale(0.9);
+                opacity: 0;
+            }
             to {
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
                 opacity: 1;
             }
         }
 
-        .modal-header {
-            background: var(--gradient);
-            color: white;
-            padding: 35px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .modal-header::before {
-            content: '';
+        .image-modal-close {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-            opacity: 0.2;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.2);
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
             border-radius: 50%;
@@ -1053,234 +1579,24 @@
             z-index: 1;
         }
 
-        .modal-close:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: rotate(90deg) scale(1.1);
-        }
-
-        .modal-title {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .modal-subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .modal-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .modal-tech-tag {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: var(--transition);
-        }
-
-        .modal-tech-tag:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .modal-body {
-            padding: 40px;
-            max-height: 70vh;
-            overflow-y: auto;
-        }
-
-        .modal-section {
-            margin-bottom: 35px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        .modal-section:nth-child(2) { animation-delay: 0.1s; }
-        .modal-section:nth-child(3) { animation-delay: 0.2s; }
-        .modal-section:nth-child(4) { animation-delay: 0.3s; }
-        .modal-section:nth-child(5) { animation-delay: 0.4s; }
-        .modal-section:nth-child(6) { animation-delay: 0.5s; }
-
-        .modal-section h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: var(--text);
-            padding-bottom: 10px;
-            border-bottom: 2px solid #F5F1EA;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .modal-section h3 i {
-            color: var(--primary);
-        }
-
-        .modal-section p {
-            color: var(--text);
-            line-height: 1.8;
-            margin-bottom: 15px;
-            font-size: 1.05rem;
-        }
-
-        .modal-list {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .modal-list li {
-            margin-bottom: 12px;
-            padding-left: 25px;
-            position: relative;
-            color: var(--text);
-            line-height: 1.6;
-            font-size: 1.05rem;
-            transition: var(--transition);
-        }
-
-        .modal-list li:hover {
-            color: var(--primary);
-            transform: translateX(5px);
-        }
-
-        .modal-list li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--secondary);
-            font-weight: bold;
-            font-size: 1.3rem;
-            transition: var(--transition);
-        }
-
-        .modal-list li:hover::before {
-            color: var(--accent);
-            transform: scale(1.2);
-        }
-
-        .project-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-            flex-wrap: wrap;
-        }
-
-        .project-link-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            background: var(--gradient);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 15px rgba(93, 138, 168, 0.2);
-        }
-
-        .project-link-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(93, 138, 168, 0.3);
-            gap: 12px;
-        }
-
-        .project-link-btn.secondary {
-            background: rgba(93, 138, 168, 0.1);
-            color: var(--primary);
-        }
-
-        .project-link-btn.secondary:hover {
-            background: var(--gradient);
-            color: white;
-        }
-
-        /* Business Analysis Images Grid */
-        .analysis-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin: 25px 0;
-        }
-
-        .analysis-image {
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-            background: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 200px;
-            border: 1px solid var(--border);
-        }
-
-        .analysis-image:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .analysis-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .analysis-image:hover img {
-            transform: scale(1.02);
-        }
-
-        /* Image Preview Modal */
-        .image-modal .modal-content {
-            max-width: 90%;
-            max-height: 90vh;
-            background: transparent;
-            box-shadow: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .image-modal .modal-close {
-            top: -50px;
-            right: -50px;
-            background: rgba(0, 0, 0, 0.5);
-            width: 50px;
-            height: 50px;
-        }
-
-        .image-modal .modal-close:hover {
+        .image-modal-close:hover {
             background: rgba(0, 0, 0, 0.7);
+            transform: rotate(90deg) scale(1.1);
         }
 
         .modal-image {
             max-width: 100%;
             max-height: 80vh;
             border-radius: var(--radius);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
         }
 
-        /* Back to Top */
+        .modal-image:hover {
+            transform: scale(1.01);
+        }
+
+        /* Enhanced Back to Top */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -1295,31 +1611,31 @@
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             z-index: 999;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 8px 25px rgba(93, 138, 168, 0.2);
-            transform: scale(0.8);
+            transform: scale(0.8) rotate(180deg);
         }
 
         .back-to-top.visible {
             opacity: 1;
             visibility: visible;
-            transform: scale(1);
+            transform: scale(1) rotate(0deg);
         }
 
         .back-to-top:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 12px 30px rgba(93, 138, 168, 0.3);
+            transform: translateY(-5px) scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 35px rgba(93, 138, 168, 0.3);
         }
 
-        /* Animations */
+        /* Enhanced Animations */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .fade-in.visible {
@@ -1327,7 +1643,7 @@
             transform: translateY(0);
         }
 
-        /* Responsive */
+        /* Enhanced Responsive */
         @media (max-width: 992px) {
             .hero-title {
                 font-size: 3rem;
@@ -1341,8 +1657,8 @@
                 grid-template-columns: 1fr;
             }
             
-            .modal-content {
-                max-width: 90%;
+            .project-detail-image-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1359,7 +1675,7 @@
                 transform: translateY(-100%);
                 opacity: 0;
                 visibility: hidden;
-                transition: var(--transition);
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 z-index: 999;
                 border-radius: 0 0 var(--radius) var(--radius);
             }
@@ -1396,9 +1712,28 @@
                 max-width: 300px;
             }
             
-            .modal-body {
+            .project-detail-content {
+                width: 95%;
+                max-height: 95vh;
+            }
+            
+            .project-detail-body {
                 padding: 30px;
-                max-height: 80vh;
+            }
+            
+            .project-detail-header {
+                padding: 30px 25px;
+            }
+            
+            .project-detail-navigation {
+                padding: 20px 25px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .project-nav-btn {
+                width: 100%;
+                justify-content: center;
             }
             
             .contact-section {
@@ -1416,22 +1751,17 @@
                 padding: 30px;
             }
             
-            .project-links {
+            .project-detail-links {
                 flex-direction: column;
             }
             
-            .project-link-btn {
+            .project-detail-link-btn {
                 width: 100%;
                 justify-content: center;
             }
             
-            .analysis-grid {
+            .project-detail-image-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .image-modal .modal-close {
-                top: -40px;
-                right: 10px;
             }
         }
 
@@ -1449,17 +1779,134 @@
                 font-size: 1.8rem;
             }
             
-            .modal-title {
+            .project-detail-title {
                 font-size: 1.6rem;
             }
             
-            .modal-header {
+            .project-detail-header {
                 padding: 30px 25px;
             }
             
-            .modal-tech {
+            .project-detail-tech {
                 justify-content: center;
             }
+            
+            .contact-section {
+                padding: 40px 25px;
+            }
+            
+            .project-detail-content {
+                width: 98%;
+                max-height: 98vh;
+            }
+        }
+
+        /* Enhanced Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(93, 138, 168, 0.1);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Particle Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: floatParticle 20s linear infinite;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.1;
+            }
+            90% {
+                opacity: 0.1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Typing Animation for Hero */
+        .typing-text {
+            display: inline-block;
+            position: relative;
+        }
+
+        .typing-text::after {
+            content: '|';
+            position: absolute;
+            right: -5px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         /* Canva button styling */
@@ -1468,11 +1915,299 @@
             font-family: 'Inter', sans-serif;
             font-weight: 600;
         }
+
+        /* Progress Indicators */
+        .progress-container {
+            margin-top: 10px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(93, 138, 168, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 3px;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 0;
+        }
+
+/* Enhanced Hero Section with Image */
+.hero-content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-text {
+    flex: 1;
+    text-align: left;
+    padding-left: 10px;
+    max-width: 750px; /* Increased max-width for more text space */
+}
+
+.hero-title {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    color: var(--text);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 30px;
+    line-height: 1.7; /* Increased line-height for better readability */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+    /* REMOVED all line clamping and fixed height */
+    max-width: 100%; /* Changed to 100% to use available space */
+    display: block;
+    height: auto;
+}
+
+.hero-image {
+    flex: 0 0 280px; /* Slightly reduced container */
+    display: flex;
+    justify-content: center; /* Changed back to center */
+    align-items: center;
+    margin-left: -60px; /* Reduced negative margin to move image more to right */
+}
+
+.profile-image-container {
+    position: relative;
+    width: 300px; /* Slightly reduced */
+    height: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transform: perspective(1000px) rotateY(15deg) translateX(10px); /* Increased rotation and added right translation */
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: floatImage 4s ease-in-out infinite;
+    border: 8px solid var(--card-bg);
+    background-color: var(--card-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: grayscale(0.1) contrast(1.05);
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.profile-image-container:hover .profile-image {
+    transform: scale(1.05);
+    filter: grayscale(0) contrast(1.1);
+}
+
+@keyframes floatImage {
+    0%, 100% { 
+        transform: perspective(1000px) rotateY(15deg) translateY(0) translateX(10px); 
+    }
+    50% { 
+        transform: perspective(1000px) rotateY(15deg) translateY(-15px) translateX(10px); 
+    }
+}
+
+.profile-image-container:hover {
+    transform: perspective(1000px) rotateY(0deg) scale(1.05) translateX(0);
+    animation: none;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+}
+
+.image-decoration {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 2px solid var(--primary);
+    border-radius: 25px;
+    opacity: 0.3;
+    z-index: -1;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.profile-image-container:hover .image-decoration {
+    opacity: 0.6;
+    transform: scale(1.02);
+}
+
+/* Add more space on larger screens */
+@media (min-width: 1400px) {
+    .hero-content-wrapper {
+        gap: 60px;
+    }
+    
+    .hero-image {
+        margin-left: -40px; /* Even less negative on larger screens */
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .hero-text {
+        max-width: 800px;
+    }
+}
+
+/* Responsive Design for Hero Section */
+@media (max-width: 1200px) {
+    .hero-content-wrapper {
+        gap: 30px;
+    }
+    
+    .hero-image {
+        margin-left: -40px;
+        flex: 0 0 260px;
+    }
+    
+    .profile-image-container {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-description {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-content-wrapper {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+    
+    .hero-text {
+        text-align: center;
+        padding-left: 0;
+        max-width: 100%;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+        white-space: normal;
+    }
+    
+    .hero-description {
+        max-width: 100%;
+        margin: 0 auto 30px;
+        font-size: 1.1rem;
+        line-height: 1.7;
+        padding: 0 20px;
+    }
+    
+    .hero-image {
+        flex: 0 0 auto;
+        margin-bottom: 20px;
+        margin-left: 0;
+        justify-content: center;
+    }
+    
+    .profile-image-container {
+        width: 280px;
+        height: 280px;
+        transform: perspective(1000px) rotateY(0deg);
+        margin: 0 auto;
+    }
+    
+    .profile-image {
+        object-fit: contain;
+    }
+    
+    @keyframes floatImage {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content-wrapper {
+        gap: 30px;
+    }
+    
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-description {
+        font-size: 1.05rem;
+        padding: 0 15px;
+    }
+    
+    .profile-image-container {
+        width: 240px;
+        height: 240px;
+        transform: perspective(1000px) rotateY(0deg);
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+    
+    .profile-image-container {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .hero-content-wrapper {
+        gap: 25px;
+    }
+}
+
+/* Ensure the hero container doesn't get too wide */
+@media (min-width: 1600px) {
+    .hero-container.container {
+        max-width: 1400px;
+    }
+}
     </style>
 </head>
 <body>
+
     <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" id="nav">
         <div class="nav-container container">
             <a href="#" class="logo">Angela Ho</a>
             <ul class="nav-links">
@@ -1489,26 +2224,37 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-container container">
-            <div class="hero-badge">
-                <i class="fas fa-chart-line"></i>
-                <span>Data Analytics Student</span>
-            </div>
-            <h1 class="hero-title">Angela Ho Tian Hui</h1>
-            <h2 class="hero-subtitle">Transforming Data into Strategic Insights</h2>
-            <p class="hero-description">
-                Currently pursuing a Diploma in Business and Financial Technology at Nanyang Polytechnic. 
-                Passionate about leveraging analytics, visualization, and technology to solve complex business challenges.
-            </p>
-            <div class="contact-buttons">
-                <a href="#projects" class="btn btn-primary">
-                    <i class="fas fa-code"></i> View My Work
-                </a>
-                <a href="#contact" class="btn btn-secondary">
-                    <i class="fas fa-envelope"></i> Get In Touch
-                </a>
+            <div class="hero-content-wrapper">
+                <div class="hero-image">
+                    <div class="profile-image-container">
+                        <img src="angelahotianhui.jpeg" alt="Angela Ho Tian Hui" class="profile-image">
+                        <div class="image-decoration"></div>
+                    </div>
+                </div>
+                <div class="hero-text">
+
+                    <h1 class="hero-title">Angela Ho Tian Hui</h1>
+                    <div class="hero-badge">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Data Analytics Student</span>
+                    </div>
+                    <h2 class="hero-subtitle">Transforming Data into Strategic Insights</h2>
+                    <p class="hero-description">
+                        Currently pursuing a Diploma in Business and Financial Technology at Nanyang Polytechnic. 
+                        Passionate about leveraging analytics, visualization, and technology to solve complex business challenges.
+                    </p>
+                    <div class="contact-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fas fa-code"></i> View My Work
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Get In Touch
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1516,48 +2262,50 @@
     <!-- Education Section -->
     <section id="education" class="education">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Education</h2>
-                <span class="section-label">Academic Journey</span>
-                <p class="section-subtitle">My educational background and academic achievements</p>
-            </div>
-            <div class="education-grid">
-                <div class="edu-card fade-in">
-                    <div class="edu-header">
-                        <div class="edu-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div>
-                            <h3 class="edu-title">Nanyang Polytechnic</h3>
-                            <p class="edu-subtitle">Diploma in Business and Financial Technology</p>
-                        </div>
-                    </div>
-                    <div class="edu-date">2023 - 2027</div>
-                    <ul class="edu-list">
-                        <li>GPA: 3.93/4.0</li>
-                        <li>NYP-Tech Scholarship Recipient (AY2025-2027)</li>
-                        <li>Director's List x3 Semesters</li>
-                        <li>Focus: Data Analytics, Financial Technology, Business Intelligence</li>
-                    </ul>
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <h2 class="section-title">Education</h2>
+                    <span class="section-label">Academic Journey</span>
+                    <p class="section-subtitle">My educational background and academic achievements</p>
                 </div>
-                
-                <div class="edu-card fade-in">
-                    <div class="edu-header">
-                        <div class="edu-icon">
-                            <i class="fas fa-school"></i>
+                <div class="education-grid">
+                    <div class="edu-card fade-in">
+                        <div class="edu-header">
+                            <div class="edu-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <h3 class="edu-title">Nanyang Polytechnic</h3>
+                                <p class="edu-subtitle">Diploma in Business and Financial Technology</p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="edu-title">Serangoon Secondary School</h3>
-                            <p class="edu-subtitle">N Level (Academic)</p>
-                        </div>
+                        <div class="edu-date">2023 - 2027</div>
+                        <ul class="edu-list">
+                            <li>GPA: 3.93/4.0</li>
+                            <li>NYP-Tech Scholarship Recipient (AY2025-2027)</li>
+                            <li>Director's List x3 Semesters</li>
+                            <li>Focus: Data Analytics, Financial Technology, Business Intelligence</li>
+                        </ul>
                     </div>
-                    <div class="edu-date">2019 - 2022</div>
-                    <ul class="edu-list">
-                        <li>Raw Score: 8, Net Score: 6</li>
-                        <li>Top of Cohort (2021 & 2022)</li>
-                        <li>Edusave Scholarship & Awards for Academic Excellence</li>
-                        <li>Developed foundational analytical and leadership skills</li>
-                    </ul>
+                    
+                    <div class="edu-card fade-in">
+                        <div class="edu-header">
+                            <div class="edu-icon">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <div>
+                                <h3 class="edu-title">Serangoon Secondary School</h3>
+                                <p class="edu-subtitle">N Level (Academic)</p>
+                            </div>
+                        </div>
+                        <div class="edu-date">2019 - 2022</div>
+                        <ul class="edu-list">
+                            <li>Raw Score: 8, Net Score: 6</li>
+                            <li>Top of Cohort (2021 & 2022)</li>
+                            <li>Edusave Scholarship, Character & Leadership Awards</li>
+                            <li>Developed foundational analytical and leadership skills</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1566,131 +2314,133 @@
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Featured Projects</h2>
-                <span class="section-label">Portfolio</span>
-                <p class="section-subtitle">Practical applications of data analytics, web development, and innovation</p>
-            </div>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="E-commerce Website">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Tea Garden E-commerce</h3>
-                        <p class="project-description">A fully responsive e-commerce website for premium teas and workshops with shopping cart and payment integration.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML/CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">E-commerce</span>
-                        </div>
-                        <a href="javascript:void(0)" class="project-link" onclick="openProjectModal('project1')">
-                            <span>View Project Details</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
+            <div class="section-wrapper delayed">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <span class="section-label">Portfolio</span>
+                    <p class="section-subtitle">Practical applications of data analytics, web development, and innovation</p>
                 </div>
-                
-                <!-- Project 2 -->
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Educational Platform">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">StudyWithMe Platform</h3>
-                        <p class="project-description">Educational website with interactive learning style quiz and centralized study resources for students.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">UI/UX Design</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Web Development</span>
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card fade-in" data-project="1">
+                        <div class="project-image">
+                            <img src="TeaGarden.png" alt="E-commerce Website">
                         </div>
-                        <a href="javascript:void(0)" class="project-link" onclick="openProjectModal('project2')">
-                            <span>View Project Details</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Data Analysis Dashboard">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Business Analysis Project</h3>
-                        <p class="project-description">Data-driven investigation into Singapore's declining birth rate and housing trends.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Tableau</span>
-                            <span class="tech-tag">Data Visualization</span>
-                            <span class="tech-tag">Python</span>
+                        <div class="project-content">
+                            <h3 class="project-title">Web Development Project</h3>
+                            <p class="project-description">A fully responsive e-commerce website for premium teas and workshops with shopping cart and payment integration.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML/CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">E-commerce</span>
+                            </div>
+                            <a href="javascript:void(0)" class="project-link" onclick="openProjectDetail(1)">
+                                <span>View Project Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
-                        <a href="javascript:void(0)" class="project-link" onclick="openProjectModal('project3')">
-                            <span>View Project Details</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
                     </div>
-                </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="project-card fade-in" data-project="2">
+                        <div class="project-image">
+                            <img src="Studywithme.png" alt="Educational Platform">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">StudyWithMe Platform</h3>
+                            <p class="project-description">Educational website with interactive learning style quiz and centralized study resources for students.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">UI/UX Design</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Web Development</span>
+                            </div>
+                            <a href="javascript:void(0)" class="project-link" onclick="openProjectDetail(2)">
+                                <span>View Project Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="project-card fade-in" data-project="3">
+                        <div class="project-image">
+                            <img src="BusinessAnalysisP1.png" alt="Data Analysis Dashboard">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Business Analysis Project</h3>
+                            <p class="project-description">Data-driven investigation into Singapore's declining birth rate and housing trends.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Tableau</span>
+                                <span class="tech-tag">Data Visualization</span>
+                                <span class="tech-tag">Python</span>
+                            </div>
+                            <a href="javascript:void(0)" class="project-link" onclick="openProjectDetail(3)">
+                                <span>View Project Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
 
-                <!-- Project 4 -->
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Data Analysis">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Understanding Data Project</h3>
-                        <p class="project-description">Comprehensive data analysis of Singapore's environmental sustainability indicators.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Excel</span>
-                            <span class="tech-tag">Data Analysis</span>
-                            <span class="tech-tag">Pivot Tables</span>
+                    <!-- Project 4 -->
+                    <div class="project-card fade-in" data-project="4">
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Data Analysis">
                         </div>
-                        <a href="javascript:void(0)" class="project-link" onclick="openProjectModal('project4')">
-                            <span>View Project Details</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <div class="project-content">
+                            <h3 class="project-title">Understanding Data Project</h3>
+                            <p class="project-description">Comprehensive data analysis of Singapore's environmental sustainability indicators.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Excel</span>
+                                <span class="tech-tag">Data Analysis</span>
+                                <span class="tech-tag">Pivot Tables</span>
+                            </div>
+                            <a href="javascript:void(0)" class="project-link" onclick="openProjectDetail(4)">
+                                <span>View Project Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Project 5 -->
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Figma UI/UX Design">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Velvet Oasis Hotel UI/UX</h3>
-                        <p class="project-description">High-fidelity interactive web prototype for a luxury hotel with complete booking system and user flows.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Figma</span>
-                            <span class="tech-tag">UI/UX Design</span>
-                            <span class="tech-tag">Prototyping</span>
-                            <span class="tech-tag">Design System</span>
+                    <!-- Project 5 -->
+                    <div class="project-card fade-in" data-project="5">
+                        <div class="project-image">
+                            <img src="Hotel.png" alt="Figma UI/UX Design">
                         </div>
-                        <a href="javascript:void(0)" class="project-link" onclick="openProjectModal('project5')">
-                            <span>View Project Details</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <div class="project-content">
+                            <h3 class="project-title">Velvet Oasis Hotel UI/UX</h3>
+                            <p class="project-description">High-fidelity interactive web prototype for a luxury hotel with complete booking system and user flows.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Figma</span>
+                                <span class="tech-tag">UI/UX Design</span>
+                                <span class="tech-tag">Prototyping</span>
+                                <span class="tech-tag">Design System</span>
+                            </div>
+                            <a href="javascript:void(0)" class="project-link" onclick="openProjectDetail(5)">
+                                <span>View Project Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Project 6 - UWS STEMFirst -->
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="STEM Project">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">UWS STEMFirst Program</h3>
-                        <p class="project-description">Eco-friendly digital solution with carbon footprint tracker feature. Top 2 Finalist in innovation challenge.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Sustainability</span>
-                            <span class="tech-tag">Innovation</span>
-                            <span class="tech-tag">Problem Solving</span>
-                            <span class="tech-tag">Team Leadership</span>
+                    <!-- Project 6 - UWS STEMFirst -->
+                    <div class="project-card fade-in" data-project="6">
+                        <div class="project-image">
+                            <img src="UWS.png" alt="STEM Project">
                         </div>
-                        <a href="javascript:void(0)" class="project-link" onclick="openProjectModal('project6')">
-                            <span>View Project Details</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <div class="project-content">
+                            <h3 class="project-title">UWS STEMFirst Program</h3>
+                            <p class="project-description">Eco-friendly digital solution with carbon footprint tracker feature. Top 2 Finalist in innovation challenge.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Sustainability</span>
+                                <span class="tech-tag">Innovation</span>
+                                <span class="tech-tag">Problem Solving</span>
+                                <span class="tech-tag">Team Leadership</span>
+                            </div>
+                            <a href="javascript:void(0)" class="project-link" onclick="openProjectDetail(6)">
+                                <span>View Project Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1700,46 +2450,48 @@
     <!-- Skills Section -->
     <section id="skills" class="skills">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Skills & Certifications</h2>
-                <span class="section-label">Capabilities</span>
-                <p class="section-subtitle">Technical expertise and professional credentials</p>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-category fade-in">
-                    <h3><i class="fas fa-code"></i> Technical Skills</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Tableau</span>
-                        <span class="skill-tag">HTML/CSS</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">Excel</span>
-                        <span class="skill-tag">Data Visualization</span>
-                        <span class="skill-tag">Statistical Analysis</span>
-                        <span class="skill-tag">SQL Basics</span>
-                        <span class="skill-tag">Figma</span>
-                        <span class="skill-tag">UI/UX Design</span>
-                    </div>
+            <div class="section-wrapper delayed">
+                <div class="section-header">
+                    <h2 class="section-title">Skills & Certifications</h2>
+                    <span class="section-label">Capabilities</span>
+                    <p class="section-subtitle">Technical expertise and professional credentials</p>
                 </div>
-                <div class="skill-category fade-in">
-                    <h3><i class="fas fa-certificate"></i> Certifications</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">SnowFlake Associate</span>
-                        <span class="skill-tag">Google Data Analytics</span>
-                        <span class="skill-tag">Google AI Essentials</span>
-                        <span class="skill-tag">Google Digital Marketing</span>
-                        <span class="skill-tag">Alibaba Cloud Computing & AI</span>
+                <div class="skills-grid">
+                    <div class="skill-category fade-in">
+                        <h3><i class="fas fa-code"></i> Technical Skills</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Tableau</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Excel</span>
+                            <span class="skill-tag">Data Visualization</span>
+                            <span class="skill-tag">Statistical Analysis</span>
+                            <span class="skill-tag">SQL Basics</span>
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">UI/UX Design</span>
+                        </div>
                     </div>
-                </div>
-                <div class="skill-category fade-in">
-                    <h3><i class="fas fa-users"></i> Professional Skills</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Team Leadership</span>
-                        <span class="skill-tag">Project Management</span>
-                        <span class="skill-tag">Communication</span>
-                        <span class="skill-tag">Problem Solving</span>
-                        <span class="skill-tag">Adaptability</span>
-                        <span class="skill-tag">Design Thinking</span>
+                    <div class="skill-category fade-in">
+                        <h3><i class="fas fa-certificate"></i> Certifications</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">SnowFlake Associate</span>
+                            <span class="skill-tag">Google Data Analytics</span>
+                            <span class="skill-tag">Google AI Essentials</span>
+                            <span class="skill-tag">Google Digital Marketing</span>
+                            <span class="skill-tag">Alibaba Cloud Computing & AI</span>
+                        </div>
+                    </div>
+                    <div class="skill-category fade-in">
+                        <h3><i class="fas fa-users"></i> Professional Skills</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Team Leadership</span>
+                            <span class="skill-tag">Project Management</span>
+                            <span class="skill-tag">Communication</span>
+                            <span class="skill-tag">Problem Solving</span>
+                            <span class="skill-tag">Adaptability</span>
+                            <span class="skill-tag">Design Thinking</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1749,63 +2501,63 @@
     <!-- Experience Section -->
     <section id="experience" class="experience">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Leadership Experience</h2>
-                <span class="section-label">Professional Journey</span>
-                <p class="section-subtitle">Hands-on experience in tech, education, and community leadership</p>
-            </div>
-            <div class="experience-grid">
-                <div class="exp-card fade-in">
-                    <div class="exp-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3 class="exp-title">Ladies in Tech</h3>
-                    <h4 class="exp-subtitle">Head of Event</h4>
-                    <div class="exp-date">2023 - Present</div>
-                    <p class="exp-description">Designed and led Jupyter Notebook workshops for 60+ participants covering data cleaning, visualization, and Python fundamentals.</p>
+            <div class="section-wrapper delayed">
+                <div class="section-header">
+                    <h2 class="section-title">Leadership Experience</h2>
+                    <span class="section-label">Professional Journey</span>
+                    <p class="section-subtitle">Hands-on experience in tech, education, and community leadership</p>
                 </div>
-                
-                <div class="exp-card fade-in">
-                    <div class="exp-icon">
-                        <i class="fas fa-female"></i>
+                <div class="experience-grid">
+                    <div class="exp-card fade-in">
+                        <div class="exp-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="exp-title">Ladies in Tech</h3>
+                        <h4 class="exp-subtitle">Head of Event</h4>
+                        <div class="exp-date">2023 - Present</div>
+                        <p class="exp-description">Designed and led Jupyter Notebook workshops for 60+ participants covering data cleaning, visualization, and Python fundamentals.</p>
                     </div>
-                    <h3 class="exp-title">Girls in Tech</h3>
-                    <h4 class="exp-subtitle">Event Organiser</h4>
-                    <div class="exp-date">Dec 2023 - Mar 2024</div>
-                    <p class="exp-description">Organized an introductory Figma event for secondary school students to provide hands-on UI/UX design experience and showcase the intersection of design and technology.</p>
-                </div>
+                    
+                    <div class="exp-card fade-in">
+                        <div class="exp-icon">
+                            <i class="fas fa-female"></i>
+                        </div>
+                        <h3 class="exp-title">Girls in Tech</h3>
+                        <h4 class="exp-subtitle">Event Organiser</h4>
+                        <div class="exp-date">Dec 2023 - Mar 2024</div>
+                        <p class="exp-description">Organized an introductory Figma event for secondary school students to provide hands-on UI/UX design experience and showcase the intersection of design and technology.</p>
+                    </div>
 
-                <div class="exp-card fade-in">
-                    <div class="exp-icon">
-                        <i class="fas fa-chalkboard-teacher"></i>
+                    <div class="exp-card fade-in">
+                        <div class="exp-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3 class="exp-title">Budding Spourt</h3>
+                        <h4 class="exp-subtitle">Tutor</h4>
+                        <div class="exp-date">2023 - Present</div>
+                        <p class="exp-description">Weekly tutoring for primary students, cultivating positive learning environments and improving student motivation.</p>
                     </div>
-                    <h3 class="exp-title">Budding Spourt</h3>
-                    <h4 class="exp-subtitle">Tutor</h4>
-                    <div class="exp-date">2023 - Present</div>
-                    <p class="exp-description">Weekly tutoring for primary students, cultivating positive learning environments and improving student motivation.</p>
-                </div>
-                
-                <div class="exp-card fade-in">
-                    <div class="exp-icon">
-                        <i class="fas fa-hands-helping"></i>
+                    
+                    <div class="exp-card fade-in">
+                        <div class="exp-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3 class="exp-title">Polytechnic Foundation Program Club</h3>
+                        <h4 class="exp-subtitle">Head of Community Engagement</h4>
+                        <div class="exp-date">Mar 2025 - Apr 2026</div>
+                        <p class="exp-description">Led "Adopt a Block" sustainability events and "Project Rejuv" elderly home revitalization initiatives, fostering community engagement and promoting sustainable practices.</p>
                     </div>
-                    <h3 class="exp-title">Polytechnic Foundation Program Club</h3>
-                    <h4 class="exp-subtitle">Head of Community Engagement</h4>
-                    <div class="exp-date">Mar 2025 - Apr 2026</div>
-                    <p class="exp-description">Led "Adopt a Block" sustainability events and "Project Rejuv" elderly home revitalization initiatives, fostering community engagement and promoting sustainable practices.</p>
-                </div>
 
-                <div class="exp-card fade-in">
-                    <div class="exp-icon">
-                        <i class="fas fa-hands-helping"></i>
+                    <div class="exp-card fade-in">
+                        <div class="exp-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3 class="exp-title">Polytechnic Foundation Program Club</h3>
+                        <h4 class="exp-subtitle">Head of Treasurer </h4>
+                        <div class="exp-date">Feb 2024 - Mar 2025</div>
+                        <p class="exp-description">Led "Adopt a Block" sustainability events and "Project Rejuv" elderly home revitalization initiatives, fostering community engagement and promoting sustainable practices.</p>
                     </div>
-                    <h3 class="exp-title">Polytechnic Foundation Program Club</h3>
-                    <h4 class="exp-subtitle">Head of Treasurer </h4>
-                    <div class="exp-date">Feb 2024 - Mar 2025</div>
-                    <p class="exp-description">Led "Adopt a Block" sustainability events and "Project Rejuv" elderly home revitalization initiatives, fostering community engagement and promoting sustainable practices.</p>
                 </div>
-
-                
             </div>
         </div>
     </section>
@@ -1813,22 +2565,24 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <div class="contact-section">
-                <h2 class="contact-title">Let's Work Together</h2>
-                <p class="contact-text">
-                    I'm currently seeking internship opportunities in data analytics, business intelligence, or fintech. 
-                    Let's discuss how I can contribute to your team with data-driven insights.
-                </p>
-                <div class="contact-buttons">
-                    <a href="mailto:angelahoth@gmail.com" class="btn btn-primary">
-                        <i class="fas fa-envelope"></i> Send Email
-                    </a>
-                    <a href="HoTianHui_231058z_Resume.pdf" download class="btn btn-secondary">
-                        <i class="fas fa-download"></i> Download Resume
-                    </a>
-                    <a href="HoTianHui_231058z_Resume.pdf" target="_blank" class="btn btn-secondary">
-                        <i class="fas fa-external-link-alt"></i> View PDF
-                    </a>
+            <div class="section-wrapper delayed">
+                <div class="contact-section">
+                    <h2 class="contact-title">Let's Work Together</h2>
+                    <p class="contact-text">
+                        I'm currently seeking internship opportunities in data analytics, business intelligence, or fintech. 
+                        Let's discuss how I can contribute to your team with data-driven insights.
+                    </p>
+                    <div class="contact-buttons">
+                        <a href="mailto:angelahoth@gmail.com" class="btn btn-primary">
+                            <i class="fas fa-envelope"></i> Send Email
+                        </a>
+                        <a href="HoTianHui_231058z_Resume.pdf" download class="btn btn-secondary">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
+                        <a href="HoTianHui_231058z_Resume.pdf" target="_blank" class="btn btn-secondary">
+                            <i class="fas fa-external-link-alt"></i> View PDF
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1852,402 +2606,40 @@
         </div>
     </footer>
 
-    <!-- Project Modals -->
-    <!-- Project 1 Modal -->
-    <div id="project1" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="modal-close" onclick="closeProjectModal()">
+    <!-- Project Detail Container -->
+    <div class="project-detail-container" id="projectDetailContainer">
+        <div class="project-detail-content">
+            <div class="project-detail-header">
+                <button class="project-detail-close" onclick="closeProjectDetail()">
                     <i class="fas fa-times"></i>
                 </button>
-                <h2 class="modal-title">Project 1: Tea Garden</h2>
-                <p class="modal-subtitle">E-commerce website for premium teas and workshops</p>
-                <div class="modal-tech">
-                    <span class="modal-tech-tag">HTML5</span>
-                    <span class="modal-tech-tag">CSS3</span>
-                    <span class="modal-tech-tag">JavaScript</span>
-                    <span class="modal-tech-tag">LocalStorage</span>
-                    <span class="modal-tech-tag">Responsive Design</span>
-                </div>
+                <h2 class="project-detail-title" id="projectDetailTitle"></h2>
+                <p class="project-detail-subtitle" id="projectDetailSubtitle"></p>
+                <div class="project-detail-tech" id="projectDetailTech"></div>
             </div>
-            <div class="modal-body">
-                <div class="modal-section">
-                    <h3><i class="fas fa-info-circle"></i> Overview</h3>
-                    <p>Tea Garden is a fully responsive e-commerce website known for premium teas, tea sets, and educational tea workshops. I designed and developed this website from scratch for web development project to demonstrate full-stack web development with a focus on user experience and e-commerce functionality.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-star"></i> Key Features & Development Highlights</h3>
-                    <ul class="modal-list">
-                        <li>Multiple interconnected HTML pages with consistent styling using CSS</li>
-                        <li>Implemented shopping cart functionality using localStorage to allow users to add, view, and clear items before checkout</li>
-                        <li>Integrated payment form with cart summary and workshop booking system, ensuring smooth transitions between pages</li>
-                        <li>Ensured mobile responsiveness across all pages and used clean, visually appealing layouts with hover effects, image galleries, and interactive elements</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-user-tie"></i> My Role</h3>
-                    <p>As sole developer and designer, I was responsible for entire project lifecycle from UI/UX design to front-end coding, testing and deployment.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-tools"></i> Tools & Technologies Used</h3>
-                    <p>HTML5, CSS3, JavaScript, LocalStorage, Google Maps Embed, Responsive Design</p>
-                </div>
-
-                <div class="modal-section">
-                    <h3><i class="fas fa-external-link-alt"></i> Project Links</h3>
-                    <div class="project-links">
-                        <a href="https://angelahth.github.io/WebDevelopmentProject" target="_blank" class="project-link-btn">
-                            <i class="fas fa-external-link-alt"></i> View Live Website
-                        </a>
-                        <a href="https://github.com/AngelaHTH/WebDevelopmentProject" target="_blank" class="project-link-btn secondary">
-                            <i class="fab fa-github"></i> View GitHub Repository
-                        </a>
-                    </div>
-                </div>
+            <div class="project-detail-body" id="projectDetailBody">
+                <!-- Content will be dynamically inserted here -->
             </div>
-        </div>
-    </div>
-
-    <!-- Project 2 Modal -->
-    <div id="project2" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="modal-close" onclick="closeProjectModal()">
-                    <i class="fas fa-times"></i>
+            <div class="project-detail-navigation">
+                <button class="project-nav-btn prev" onclick="navigateProject('prev')">
+                    <i class="fas fa-arrow-left"></i> Previous Project
                 </button>
-                <h2 class="modal-title">Project 2: StudyWithMe</h2>
-                <p class="modal-subtitle">Educational platform for students</p>
-                <div class="modal-tech">
-                    <span class="modal-tech-tag">HTML5</span>
-                    <span class="modal-tech-tag">CSS3</span>
-                    <span class="modal-tech-tag">JavaScript</span>
-                    <span class="modal-tech-tag">Responsive Design</span>
-                    <span class="modal-tech-tag">UI/UX Design</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <div class="modal-section">
-                    <h3><i class="fas fa-info-circle"></i> Overview</h3>
-                    <p>StudyWithMe is a comprehensive educational website to support students in their learning by providing free study resources, personalised learning tips and access to study platforms in one centralised hub.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-star"></i> Key Features & Development Highlights</h3>
-                    <ul class="modal-list">
-                        <li>Multi-page responsive website featuring a cohesive colour scheme and clean UI, with a focus on usability</li>
-                        <li>Created interactive learning style quiz to identify user preferred study methods (Visual, Auditory, Read/Write, Kinesthetic) and provide tailored study tips</li>
-                        <li>Designed resource cards linking to Google Drive folders with subject-specific study notes (English, Math, Science, Humanities, etc.) and external study platforms (Coursera, Khan Academy, free test paper sites)</li>
-                        <li>Smooth navigation, hover animation and visually engaging layout with consistent branding</li>
-                        <li>Ensured mobile-friendly design and intuitive navigation across all pages</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-user-tie"></i> My Role</h3>
-                    <p>As the lead developer and designer, I was responsible for concept design, front-end development, content organisation, and user experience optimisation.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-tools"></i> Tools & Technologies Used</h3>
-                    <p>HTML5, CSS3, JavaScript, Responsive Web Design, Interactive UI</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-external-link-alt"></i> Project Links</h3>
-                    <div class="project-links">
-                        <a href="https://angelahth.github.io/Studuywithme/" target="_blank" class="project-link-btn">
-                            <i class="fas fa-external-link-alt"></i> View Live Website
-                        </a>
-                        <a href="https://github.com/AngelaHTH/Studuywithme#studuywithme" target="_blank" class="project-link-btn secondary">
-                            <i class="fab fa-github"></i> View GitHub Repository
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Project 3 Modal -->
-    <div id="project3" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="modal-close" onclick="closeProjectModal()">
-                    <i class="fas fa-times"></i>
+                <button class="project-nav-btn" onclick="closeProjectDetail()">
+                    <i class="fas fa-times"></i> Close
                 </button>
-                <h2 class="modal-title">Project 3: Business Analysis Project</h2>
-                <p class="modal-subtitle">Data analysis of housing trends and birth rates in Singapore</p>
-                <div class="modal-tech">
-                    <span class="modal-tech-tag">Tableau</span>
-                    <span class="modal-tech-tag">Data Visualization</span>
-                    <span class="modal-tech-tag">Statistical Analysis</span>
-                    <span class="modal-tech-tag">Dashboard Design</span>
-                    <span class="modal-tech-tag">Python</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <div class="modal-section">
-                    <h3><i class="fas fa-info-circle"></i> Overview</h3>
-                    <p>Led a team of four in a data-driven investigation into Singapore's declining birth rate. The project aimed to uncover and visualise the relationships between housing trends and family formation decisions to provide actionable insights.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-star"></i> Key Features & Analysis Highlights</h3>
-                    <ul class="modal-list">
-                        <li>Developed an interactive Tableau dashboard analysing the impact on birth rates across three dimensions</li>
-                        <li>Affordability: Tracked rising HDB prices and price-to-income ratios, benchmarking Singapore's mortgage burden against global cities</li>
-                        <li>Availability: Correlated increasing BTO wait times with delayed family formation for ages 25-49</li>
-                        <li>Space: Analysed crowding indices and compared dwelling sizes internationally to assess livability impact</li>
-                        <li>Synthesised insights to show how cost, delays, and space constraints collectively influence family planning</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-user-tie"></i> My Role</h3>
-                    <p>As a Team Lead, I was responsible for project design, data analysis and developing the interactive Tableau dashboards.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-tools"></i> Tools & Technologies Used</h3>
-                    <p>Tableau, Data Visualisation, Statistical Analysis, Dashboard Design, Python</p>
-                </div>
-
-                <div class="modal-section">
-                    <h3><i class="fas fa-chart-bar"></i> Project Visualizations</h3>
-                    <div class="analysis-grid">
-                        <div class="analysis-image">
-                            <img src="images/BusinessAnalysisP1.png" alt="Business Analysis Dashboard Part 1" onclick="openImageModal('BusinessAnalysisP1.png')">
-                        </div>
-                        <div class="analysis-image">
-                            <img src="images/BusinessAnalysisP2.png" alt="Business Analysis Dashboard Part 2" onclick="openImageModal('BusinessAnalysisP2.png')">
-                        </div>
-                        <div class="analysis-image">
-                            <img src="images/BusinessAnalysisP3.png" alt="Business Analysis Dashboard Part 3" onclick="openImageModal('BusinessAnalysisP3.png')">
-                        </div>
-                        <div class="analysis-image">
-                            <img src="images/BusinessAnalysisP4.png" alt="Business Analysis Dashboard Part 4" onclick="openImageModal('BusinessAnalysisP4.png')">
-                        </div>
-                        <div class="analysis-image" style="grid-column: span 2;">
-                            <img src="images/BusinessAnalysisP5.png" alt="Business Analysis Dashboard Part 5" onclick="openImageModal('BusinessAnalysisP5.png')">
-                        </div>
-                    </div>
-                    <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-light); text-align: center;">
-                        <i class="fas fa-mouse-pointer"></i> Click on any image to view it larger
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Project 4 Modal -->
-    <div id="project4" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="modal-close" onclick="closeProjectModal()">
-                    <i class="fas fa-times"></i>
+                <button class="project-nav-btn" onclick="navigateProject('next')">
+                    Next Project <i class="fas fa-arrow-right"></i>
                 </button>
-                <h2 class="modal-title">Project 4: Understanding Data Project</h2>
-                <p class="modal-subtitle">Environmental sustainability data analysis for Singapore</p>
-                <div class="modal-tech">
-                    <span class="modal-tech-tag">Microsoft Excel</span>
-                    <span class="modal-tech-tag">Data Cleaning</span>
-                    <span class="modal-tech-tag">Pivot Tables</span>
-                    <span class="modal-tech-tag">Data Analysis</span>
-                    <span class="modal-tech-tag">Statistical Analysis</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <div class="modal-section">
-                    <h3><i class="fas fa-info-circle"></i> Overview</h3>
-                    <p>Executed a comprehensive, solo data analysis to investigate Singapore's environmental sustainability indicators from 2007 to 2022. The project involved synthesizing complex, multi-year datasets into clear insights on waste management, renewable energy adoption, greenhouse gas emissions, and climate-related factors.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-star"></i> Key Features & Analysis Highlights</h3>
-                    <ul class="modal-list">
-                        <li>Conducted an end-to-end analysis across multiple environmental dimensions using cleaned and pivoted data</li>
-                        <li>Waste Management: Analysed trends in total waste generated, recycled, and disposed. Drilled down into recycling rates by material type (e.g., wood, paper, plastic) to identify areas of strength and opportunity</li>
-                        <li>Energy Transition: Tracked the exponential growth of solar panel installation as a key metric for Singapore's shift towards renewable energy</li>
-                        <li>Emissions Profile: Investigated the composition of greenhouse gas emissions over time, noting the dominant share of CO₂ and the changing contributions of other gases like HFCs and PFCs</li>
-                        <li>Climate & Environmental Factors: Correlated data on sea level rise, temperature extremes, rainfall patterns, and the stability of protected land areas to build a holistic view of environmental pressures</li>
-                        <li>Ancillary Data Integration: Incorporated datasets on public transport usage to explore potential correlations between mobility trends and environmental outcomes</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-user-tie"></i> My Role</h3>
-                    <p>I was responsible for the entire data pipeline: data auditing, cleaning, transformation (using pivot tables), exploratory analysis, synthesis of findings, and the creation of structured summary tables for clear presentation.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-tools"></i> Tools & Technologies Used</h3>
-                    <p>Microsoft Excel (Data Cleaning, Pivot Tables, Data Analysis), Statistical Analysis, Data Synthesis</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-database"></i> Data Files & Downloads</h3>
-                    <div class="project-links">
-                        <a href="Understandingdata_Assignment.xlsx" download class="project-link-btn">
-                            <i class="fas fa-file-excel"></i> Download Excel Data File
-                        </a>
-                        <a href="Understandingdata_Assignment.xlsx" target="_blank" class="project-link-btn secondary">
-                            <i class="fas fa-external-link-alt"></i> View Excel Online
-                        </a>
-                    </div>
-                    <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-light);">
-                        <i class="fas fa-info-circle"></i> The Excel file contains the complete dataset and analysis with multiple sheets covering waste management, sea levels, transport usage, rainfall, protected areas, greenhouse gas emissions, solar panels, and temperature data.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-        <!-- Project 5 Modal -->
-    <div id="project5" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="modal-close" onclick="closeProjectModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-                <h2 class="modal-title">Project 5: Velvet Oasis Hotel</h2>
-                <p class="modal-subtitle">High-fidelity UI/UX design for luxury hotel website</p>
-                <div class="modal-tech">
-                    <span class="modal-tech-tag">Figma</span>
-                    <span class="modal-tech-tag">UI Design</span>
-                    <span class="modal-tech-tag">UX Research</span>
-                    <span class="modal-tech-tag">Prototyping</span>
-                    <span class="modal-tech-tag">Design System</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <div class="modal-section">
-                    <h3><i class="fas fa-info-circle"></i> Overview</h3>
-                    <p>Designed and developed a high-fidelity, interactive web prototype for "Velvet Oasis," a luxury hotel. The project focused on creating a seamless user journey from initial discovery to finalized booking, ensuring a sophisticated aesthetic that aligns with a premium hospitality brand.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-star"></i> Key Features & Design Highlights</h3>
-                    <ul class="modal-list">
-                        <li><strong>Comprehensive User Interface:</strong> Developed intuitive navigation and responsive design elements for optimal user experience across all devices.</li>
-                        <li><strong>Integrated Booking System:</strong> Built a multi-step booking funnel for both room stays and event venues. Included date pickers, room selection carousels, and dynamic "Total Price" calculations.</li>
-                        <li><strong>User Account Management:</strong> Designed secure entry points for Sign In, Sign Up, and "Forgot Password" flows, incorporating real-time form validation with password strength indicators and error messaging.</li>
-                        <li><strong>Interactive FAQ & Support:</strong> Implemented a categorized FAQ section (Payment, Service, General) with accordion-style interaction and a simulated chatbot interface to enhance customer self-service.</li>
-                        <li><strong>Visual Property Showcases:</strong> Created detailed "Hotel Room View" pages featuring high-quality image galleries, categorized amenities (Complimentary Services), and customer testimonials to build brand trust.</li>
-                        <li><strong>Payment Gateway Integration:</strong> Prototyped a comprehensive checkout experience supporting multiple payment methods, including PayNow (QR code simulation) and Credit/Debit card validation flows.</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-user-tie"></i> My Role</h3>
-                    <p>I was responsible for the end-to-end creative process: user flow mapping, wireframing, component-based design system creation, interactive prototyping, and usability testing for form validations and navigation logic.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-tools"></i> Tools & Technologies Used</h3>
-                    <p>Figma (Auto Layout, Components & Variants, Advanced Prototyping), UI Design, UX Research, Interaction Design, Design Systems, Usability Testing.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-trophy"></i> Outcome</h3>
-                    <p>Delivered a fully functional interactive prototype that effectively simulates a live luxury hotel website. The final design provides a cohesive brand identity and a friction-less booking experience, validated through complex state-management within Figma.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-external-link-alt"></i> Project Links</h3>
-                    <div class="project-links">
-                        <a href="https://www.figma.com/proto/8PNElaX2CqefokuKfzrj9N/HoTianHui_231058Z?node-id=298-2423&t=c1TI6ZayssP5pYLM-1" target="_blank" class="project-link-btn">
-                            <i class="fas fa-play-circle"></i> View Interactive Prototype
-                        </a>
-                        <a href="https://www.figma.com/design/8PNElaX2CqefokuKfzrj9N/HoTianHui_231058Z?node-id=0-1&t=KkcenuNEWxkqrljS-1" target="_blank" class="project-link-btn secondary">
-                            <i class="fas fa-edit"></i> Open Figma Editor
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Project 6 Modal - UWS STEMFirst -->
-    <div id="project6" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="modal-close" onclick="closeProjectModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-                <h2 class="modal-title">UWS STEMFirst Program</h2>
-                <p class="modal-subtitle">Top 2 Finalist - Eco-friendly Digital Solution with Carbon Footprint Tracker</p>
-                <div class="modal-tech">
-                    <span class="modal-tech-tag">Sustainability Tech</span>
-                    <span class="modal-tech-tag">Digital Innovation</span>
-                        <span class="modal-tech-tag">Team Leadership</span>
-                    <span class="modal-tech-tag">Presentation</span>
-                    <span class="modal-tech-tag">Problem Solving</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <div class="modal-section">
-                    <h3><i class="fas fa-info-circle"></i> Overview</h3>
-                    <p>Participated in the UWS STEMFirst Program as Team Lead, developing an innovative eco-friendly digital solution aimed at helping individuals and organizations track and reduce their carbon footprint. Our team was recognized as Top 2 Finalist among competitive entries.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-star"></i> Key Features & Innovation Highlights</h3>
-                    <ul class="modal-list">
-                        <li><strong>Carbon Footprint Tracker:</strong> Developed a digital tool to help users monitor and understand their environmental impact across various activities</li>
-                        <li><strong>Personalized Recommendations:</strong> Created algorithms to provide customized sustainability suggestions based on user data and habits</li>
-                        <li><strong>Gamification Elements:</strong> Integrated reward systems and progress tracking to encourage consistent eco-friendly behavior</li>
-                        <li><strong>Data Visualization:</strong> Designed clear, interactive dashboards to help users understand complex environmental data</li>
-                        <li><strong>Scalable Solution:</strong> Built with potential for both individual and organizational use cases</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-user-tie"></i> My Role & Contributions</h3>
-                    <ul class="modal-list">
-                        <li>Led a cross-functional team through the entire project lifecycle from ideation to final presentation</li>
-                        <li>Facilitated brainstorming sessions to identify core user pain points and innovative solutions</li>
-                        <li>Managed project timeline and coordinated team efforts to meet all program milestones</li>
-                        <li>Developed the business case and value proposition for our solution</li>
-                        <li>Created and delivered the final pitch presentation to program judges</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-tools"></i> Tools & Technologies Used</h3>
-                    <p>Problem-solving frameworks, Presentation design tools, Data analysis techniques, Team collaboration platforms</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-trophy"></i> Achievement & Recognition</h3>
-                    <p>Selected as <strong>Top 2 Finalist</strong> among all program participants, demonstrating exceptional innovation, teamwork, and problem-solving capabilities. Received positive feedback from judges for the practicality and scalability of our solution.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-external-link-alt"></i> Project Files & Presentation</h3>
-                    <div class="project-links">
-                        <a href="UWS STEMFirst Program_PitchDeck.pdf" download class="project-link-btn">
-                            <i class="fas fa-file-pdf"></i> Download Pitch Deck (PDF)
-                        </a>
-                        <a href="UWS STEMFirst Program_PitchDeck.pdf" target="_blank" class="project-link-btn secondary">
-                            <i class="fas fa-external-link-alt"></i> View PDF Online
-                        </a>
-                    </div>
-                    <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-light);">
-                        <i class="fas fa-info-circle"></i> The PDF contains the complete pitch deck with detailed information about our eco-friendly digital solution, including problem statement, solution overview, features, and implementation plan.
-                    </p>
-                </div>
             </div>
         </div>
     </div>
 
     <!-- Image Preview Modal -->
-    <div id="imageModal" class="modal image-modal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeImageModal()">
-                <i class="fas fa-times"></i>
-            </button>
+    <div class="image-modal" id="imageModal">
+        <button class="image-modal-close" onclick="closeImageModal()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="image-modal-content">
             <img id="modalImage" src="" alt="Project Image" class="modal-image">
         </div>
     </div>
@@ -2258,6 +2650,318 @@
     </button>
 
     <script>
+        // Project Data
+        const projects = [
+            {
+                id: 1,
+                title: "Web Development Project",
+                subtitle: "E-commerce website for premium teas and workshops",
+                tech: ["HTML5", "CSS3", "JavaScript", "LocalStorage", "Responsive Design"],
+                content: `
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>Tea Garden is a fully responsive e-commerce website known for premium teas, tea sets, and educational tea workshops. I designed and developed this website from scratch for web development project to demonstrate full-stack web development with a focus on user experience and e-commerce functionality.</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-star"></i> Key Features & Development Highlights</h3>
+                        <ul class="project-detail-list">
+                            <li>Multiple interconnected HTML pages with consistent styling using CSS</li>
+                            <li>Implemented shopping cart functionality using localStorage to allow users to add, view, and clear items before checkout</li>
+                            <li>Integrated payment form with cart summary and workshop booking system, ensuring smooth transitions between pages</li>
+                            <li>Ensured mobile responsiveness across all pages and used clean, visually appealing layouts with hover effects, image galleries, and interactive elements</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-user-tie"></i> My Role</h3>
+                        <p>As sole developer and designer, I was responsible for entire project lifecycle from UI/UX design to front-end coding, testing and deployment.</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-tools"></i> Tools & Technologies Used</h3>
+                        <p>HTML5, CSS3, JavaScript, LocalStorage, Google Maps Embed, Responsive Design</p>
+                    </div>
+
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-external-link-alt"></i> Project Links</h3>
+                        <div class="project-detail-links">
+                            <a href="https://angelahth.github.io/WebDevelopmentProject" target="_blank" class="project-detail-link-btn">
+                                <i class="fas fa-external-link-alt"></i> View Live Website
+                            </a>
+                            <a href="https://github.com/AngelaHTH/WebDevelopmentProject" target="_blank" class="project-detail-link-btn secondary">
+                                <i class="fab fa-github"></i> View GitHub Repository
+                            </a>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 2,
+                title: "StudyWithMe Platform",
+                subtitle: "Educational platform for students",
+                tech: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "UI/UX Design"],
+                content: `
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>StudyWithMe is a comprehensive educational website to support students in their learning by providing free study resources, personalised learning tips and access to study platforms in one centralised hub.</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-star"></i> Key Features & Development Highlights</h3>
+                        <ul class="project-detail-list">
+                            <li>Multi-page responsive website featuring a cohesive colour scheme and clean UI, with a focus on usability</li>
+                            <li>Created interactive learning style quiz to identify user preferred study methods (Visual, Auditory, Read/Write, Kinesthetic) and provide tailored study tips</li>
+                            <li>Designed resource cards linking to Google Drive folders with subject-specific study notes (English, Math, Science, Humanities, etc.) and external study platforms (Coursera, Khan Academy, free test paper sites)</li>
+                            <li>Smooth navigation, hover animation and visually engaging layout with consistent branding</li>
+                            <li>Ensured mobile-friendly design and intuitive navigation across all pages</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-user-tie"></i> My Role</h3>
+                        <p>As the lead developer and designer, I was responsible for concept design, front-end development, content organisation, and user experience optimisation.</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-tools"></i> Tools & Technologies Used</h3>
+                        <p>HTML5, CSS3, JavaScript, Responsive Web Design, Interactive UI</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-external-link-alt"></i> Project Links</h3>
+                        <div class="project-detail-links">
+                            <a href="https://angelahth.github.io/Studuywithme/" target="_blank" class="project-detail-link-btn">
+                                <i class="fas fa-external-link-alt"></i> View Live Website
+                            </a>
+                            <a href="https://github.com/AngelaHTH/Studuywithme#studuywithme" target="_blank" class="project-detail-link-btn secondary">
+                                <i class="fab fa-github"></i> View GitHub Repository
+                            </a>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 3,
+                title: "Business Analysis Project",
+                subtitle: "Data analysis of housing trends and birth rates in Singapore",
+                tech: ["Tableau", "Data Visualization", "Statistical Analysis", "Dashboard Design", "Python"],
+                content: `
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>Led a team of four in a data-driven investigation into Singapore's declining birth rate. The project aimed to uncover and visualise the relationships between housing trends and family formation decisions to provide actionable insights.</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-star"></i> Key Features & Analysis Highlights</h3>
+                        <ul class="project-detail-list">
+                            <li>Developed an interactive Tableau dashboard analysing the impact on birth rates across three dimensions</li>
+                            <li>Affordability: Tracked rising HDB prices and price-to-income ratios, benchmarking Singapore's mortgage burden against global cities</li>
+                            <li>Availability: Correlated increasing BTO wait times with delayed family formation for ages 25-49</li>
+                            <li>Space: Analysed crowding indices and compared dwelling sizes internationally to assess livability impact</li>
+                            <li>Synthesised insights to show how cost, delays, and space constraints collectively influence family planning</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-user-tie"></i> My Role</h3>
+                        <p>As a Team Lead, I was responsible for project design, data analysis and developing the interactive Tableau dashboards.</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-tools"></i> Tools & Technologies Used</h3>
+                        <p>Tableau, Data Visualisation, Statistical Analysis, Dashboard Design, Python</p>
+                    </div>
+
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-chart-bar"></i> Project Visualizations</h3>
+                        <div class="project-detail-image-grid">
+                            <div class="project-detail-image">
+                                <img src="BusinessAnalysisP1.png" alt="Business Analysis Dashboard Part 1" onclick="openImageModal('BusinessAnalysisP1.png')">
+                            </div>
+                            <div class="project-detail-image">
+                                <img src="BusinessAnalysisP2.png" alt="Business Analysis Dashboard Part 2" onclick="openImageModal('BusinessAnalysisP2.png')">
+                            </div>
+                            <div class="project-detail-image">
+                                <img src="BusinessAnalysisP3.png" alt="Business Analysis Dashboard Part 3" onclick="openImageModal('BusinessAnalysisP3.png')">
+                            </div>
+                            <div class="project-detail-image">
+                                <img src="BusinessAnalysisP4.png" alt="Business Analysis Dashboard Part 4" onclick="openImageModal('BusinessAnalysisP4.png')">
+                            </div>
+                            <div class="project-detail-image">
+                                <img src="BusinessAnalysisP5.png" alt="Business Analysis Dashboard Part 5" onclick="openImageModal('BusinessAnalysisP5.png')">
+                            </div>
+                        </div>
+                        <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-light); text-align: center;">
+                            <i class="fas fa-mouse-pointer"></i> Click on any image to view it larger
+                        </p>
+                    </div>
+                `
+            },
+            {
+                id: 4,
+                title: "Understanding Data Project",
+                subtitle: "Environmental sustainability data analysis for Singapore",
+                tech: ["Microsoft Excel", "Data Cleaning", "Pivot Tables", "Data Analysis", "Statistical Analysis"],
+                content: `
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>Executed a comprehensive, solo data analysis to investigate Singapore's environmental sustainability indicators from 2007 to 2022. The project involved synthesizing complex, multi-year datasets into clear insights on waste management, renewable energy adoption, greenhouse gas emissions, and climate-related factors.</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-star"></i> Key Features & Analysis Highlights</h3>
+                        <ul class="project-detail-list">
+                            <li>Conducted an end-to-end analysis across multiple environmental dimensions using cleaned and pivoted data</li>
+                            <li>Waste Management: Analysed trends in total waste generated, recycled, and disposed. Drilled down into recycling rates by material type (e.g., wood, paper, plastic) to identify areas of strength and opportunity</li>
+                            <li>Energy Transition: Tracked the exponential growth of solar panel installation as a key metric for Singapore's shift towards renewable energy</li>
+                            <li>Emissions Profile: Investigated the composition of greenhouse gas emissions over time, noting the dominant share of CO₂ and the changing contributions of other gases like HFCs and PFCs</li>
+                            <li>Climate & Environmental Factors: Correlated data on sea level rise, temperature extremes, rainfall patterns, and the stability of protected land areas to build a holistic view of environmental pressures</li>
+                            <li>Ancillary Data Integration: Incorporated datasets on public transport usage to explore potential correlations between mobility trends and environmental outcomes</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-user-tie"></i> My Role</h3>
+                        <p>I was responsible for the entire data pipeline: data auditing, cleaning, transformation (using pivot tables), exploratory analysis, synthesis of findings, and the creation of structured summary tables for clear presentation.</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-tools"></i> Tools & Technologies Used</h3>
+                        <p>Microsoft Excel (Data Cleaning, Pivot Tables, Data Analysis), Statistical Analysis, Data Synthesis</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-database"></i> Data Files & Downloads</h3>
+                        <div class="project-detail-links">
+                            <a href="Understandingdata_Assignment.xlsx" download class="project-detail-link-btn">
+                                <i class="fas fa-file-excel"></i> Download Excel Data File
+                            </a>
+                            <a href="Understandingdata_Assignment.xlsx" target="_blank" class="project-detail-link-btn secondary">
+                                <i class="fas fa-external-link-alt"></i> View Excel Online
+                            </a>
+                        </div>
+                        <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-light);">
+                            <i class="fas fa-info-circle"></i> The Excel file contains the complete dataset and analysis with multiple sheets covering waste management, sea levels, transport usage, rainfall, protected areas, greenhouse gas emissions, solar panels, and temperature data.
+                        </p>
+                    </div>
+                `
+            },
+            {
+                id: 5,
+                title: "Velvet Oasis Hotel",
+                subtitle: "High-fidelity UI/UX design for luxury hotel website",
+                tech: ["Figma", "UI Design", "UX Research", "Prototyping", "Design System"],
+                content: `
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>Designed and developed a high-fidelity, interactive web prototype for "Velvet Oasis," a luxury hotel. The project focused on creating a seamless user journey from initial discovery to finalized booking, ensuring a sophisticated aesthetic that aligns with a premium hospitality brand.</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-star"></i> Key Features & Design Highlights</h3>
+                        <ul class="project-detail-list">
+                            <li><strong>Comprehensive User Interface:</strong> Developed intuitive navigation and responsive design elements for optimal user experience across all devices</li>
+                            <li><strong>Integrated Booking System:</strong> Built a multi-step booking funnel for both room stays and event venues. Included date pickers, room selection carousels, and dynamic "Total Price" calculations</li>
+                            <li><strong>User Account Management:</strong> Designed secure entry points for Sign In, Sign Up, and "Forgot Password" flows, incorporating real-time form validation with password strength indicators and error messaging</li>
+                            <li><strong>Interactive FAQ & Support:</strong> Implemented a categorized FAQ section (Payment, Service, General) with accordion-style interaction and a simulated chatbot interface to enhance customer self-service</li>
+                            <li><strong>Visual Property Showcases:</strong> Created detailed "Hotel Room View" pages featuring high-quality image galleries, categorized amenities (Complimentary Services), and customer testimonials to build brand trust</li>
+                            <li><strong>Payment Gateway Integration:</strong> Prototyped a comprehensive checkout experience supporting multiple payment methods, including PayNow (QR code simulation) and Credit/Debit card validation flows</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-user-tie"></i> My Role</h3>
+                        <p>I was responsible for the end-to-end creative process: user flow mapping, wireframing, component-based design system creation, interactive prototyping, and usability testing for form validations and navigation logic.</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-tools"></i> Tools & Technologies Used</h3>
+                        <p>Figma (Auto Layout, Components & Variants, Advanced Prototyping), UI Design, UX Research, Interaction Design, Design Systems, Usability Testing.</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-trophy"></i> Outcome</h3>
+                        <p>Delivered a fully functional interactive prototype that effectively simulates a live luxury hotel website. The final design provides a cohesive brand identity and a friction-less booking experience, validated through complex state-management within Figma.</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-external-link-alt"></i> Project Links</h3>
+                        <div class="project-detail-links">
+                            <a href="https://www.figma.com/proto/8PNElaX2CqefokuKfzrj9N/HoTianHui_231058Z?node-id=298-2423&t=c1TI6ZayssP5pYLM-1" target="_blank" class="project-detail-link-btn">
+                                <i class="fas fa-play-circle"></i> View Interactive Prototype
+                            </a>
+                            <a href="https://www.figma.com/design/8PNElaX2CqefokuKfzrj9N/HoTianHui_231058Z?node-id=0-1&t=KkcenuNEWxkqrljS-1" target="_blank" class="project-detail-link-btn secondary">
+                                <i class="fas fa-edit"></i> Open Figma Editor
+                            </a>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 6,
+                title: "UWS STEMFirst Program",
+                subtitle: "Top 2 Finalist - Eco-friendly Digital Solution with Carbon Footprint Tracker",
+                tech: ["Sustainability Tech", "Digital Innovation", "Team Leadership", "Presentation", "Problem Solving"],
+                content: `
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>Participated in the UWS STEMFirst Program as Team Lead, developing an innovative eco-friendly digital solution aimed at helping individuals and organizations track and reduce their carbon footprint. Our team was recognized as Top 2 Finalist among competitive entries.</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-star"></i> Key Features & Innovation Highlights</h3>
+                        <ul class="project-detail-list">
+                            <li><strong>Carbon Footprint Tracker:</strong> Developed a digital tool to help users monitor and understand their environmental impact across various activities</li>
+                            <li><strong>Personalized Recommendations:</strong> Created algorithms to provide customized sustainability suggestions based on user data and habits</li>
+                            <li><strong>Gamification Elements:</strong> Integrated reward systems and progress tracking to encourage consistent eco-friendly behavior</li>
+                            <li><strong>Data Visualization:</strong> Designed clear, interactive dashboards to help users understand complex environmental data</li>
+                            <li><strong>Scalable Solution:</strong> Built with potential for both individual and organizational use cases</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-user-tie"></i> My Role & Contributions</h3>
+                        <ul class="project-detail-list">
+                            <li>Led a cross-functional team through the entire project lifecycle from ideation to final presentation</li>
+                            <li>Facilitated brainstorming sessions to identify core user pain points and innovative solutions</li>
+                            <li>Managed project timeline and coordinated team efforts to meet all program milestones</li>
+                            <li>Developed the business case and value proposition for our solution</li>
+                            <li>Created and delivered the final pitch presentation to program judges</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-tools"></i> Tools & Technologies Used</h3>
+                        <p>Problem-solving frameworks, Presentation design tools, Data analysis techniques, Team collaboration platforms</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-trophy"></i> Achievement & Recognition</h3>
+                        <p>Selected as <strong>Top 2 Finalist</strong> among all program participants, demonstrating exceptional innovation, teamwork, and problem-solving capabilities. Received positive feedback from judges for the practicality and scalability of our solution.</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3><i class="fas fa-external-link-alt"></i> Project Files & Presentation</h3>
+                        <div class="project-detail-links">
+                            <a href="UWS STEMFirst Program_PitchDeck.pdf" download class="project-detail-link-btn">
+                                <i class="fas fa-file-pdf"></i> Download Pitch Deck (PDF)
+                            </a>
+                            <a href="UWS STEMFirst Program_PitchDeck.pdf" target="_blank" class="project-detail-link-btn secondary">
+                                <i class="fas fa-external-link-alt"></i> View PDF Online
+                            </a>
+                        </div>
+                        <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-light);">
+                            <i class="fas fa-info-circle"></i> The PDF contains the complete pitch deck with detailed information about our eco-friendly digital solution, including problem statement, solution overview, features, and implementation plan.
+                        </p>
+                    </div>
+                `
+            }
+        ];
+
+        // Current project index
+        let currentProjectIndex = 0;
+
         // DOM Ready
         document.addEventListener('DOMContentLoaded', function() {
             // Set current year
@@ -2292,12 +2996,24 @@
             });
             
             // Navbar scroll effect
+            let lastScrollTop = 0;
             window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > 50) {
                     nav.classList.add('scrolled');
                 } else {
                     nav.classList.remove('scrolled');
                 }
+                
+                // Hide/show nav on scroll
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    nav.classList.add('hidden');
+                } else {
+                    nav.classList.remove('hidden');
+                }
+                
+                lastScrollTop = scrollTop;
             });
             
             // Back to top button
@@ -2320,7 +3036,26 @@
                 });
             }
             
-            // Scroll animations
+            // Section Transition Observer
+            const sectionWrappers = document.querySelectorAll('.section-wrapper');
+            
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            // Observe all section wrappers
+            sectionWrappers.forEach(wrapper => {
+                sectionObserver.observe(wrapper);
+            });
+            
+            // Scroll animations for fade-in elements
             const fadeElements = document.querySelectorAll('.fade-in');
             
             const fadeInOnScroll = () => {
@@ -2359,16 +3094,16 @@
             // Add hover effect to project cards
             document.querySelectorAll('.project-card').forEach(card => {
                 card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                    this.style.transform = 'translateY(-10px) scale(1.02) rotate(1deg)';
                 });
                 
                 card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
+                    this.style.transform = 'translateY(0) scale(1) rotate(0deg)';
                 });
             });
             
             // Add ripple effect to buttons
-            document.querySelectorAll('.btn').forEach(button => {
+            document.querySelectorAll('.btn, .project-nav-btn').forEach(button => {
                 button.addEventListener('click', function(e) {
                     const ripple = document.createElement('span');
                     const rect = this.getBoundingClientRect();
@@ -2390,30 +3125,67 @@
             });
         });
 
-        // Project Modal Functions
-        function openProjectModal(projectId) {
-            const modal = document.getElementById(projectId);
-            if (modal) {
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-                // Trigger animation
+        // Project Detail Functions
+        function openProjectDetail(projectId) {
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            currentProjectIndex = projectId - 1;
+            
+            // Set title and subtitle
+            document.getElementById('projectDetailTitle').textContent = project.title;
+            document.getElementById('projectDetailSubtitle').textContent = project.subtitle;
+            
+            // Set tech tags
+            const techContainer = document.getElementById('projectDetailTech');
+            techContainer.innerHTML = '';
+            project.tech.forEach(tech => {
+                const tag = document.createElement('span');
+                tag.className = 'project-detail-tech-tag';
+                tag.textContent = tech;
+                techContainer.appendChild(tag);
+            });
+            
+            // Set content
+            document.getElementById('projectDetailBody').innerHTML = project.content;
+            
+            // Show container
+            const container = document.getElementById('projectDetailContainer');
+            container.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Reset animations
+            setTimeout(() => {
+                const title = document.getElementById('projectDetailTitle');
+                const subtitle = document.getElementById('projectDetailSubtitle');
+                const tech = document.getElementById('projectDetailTech');
+                
+                title.style.animation = 'none';
+                subtitle.style.animation = 'none';
+                tech.style.animation = 'none';
+                
                 setTimeout(() => {
-                    modal.classList.add('show');
+                    title.style.animation = 'titleSlide 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards';
+                    subtitle.style.animation = 'subtitleSlide 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards';
+                    tech.style.animation = 'techSlide 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards';
                 }, 10);
-            }
+            }, 10);
         }
 
-        function closeProjectModal() {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (!modal.classList.contains('image-modal')) {
-                    modal.classList.remove('show');
-                    setTimeout(() => {
-                        modal.style.display = 'none';
-                    }, 300);
-                }
-            });
+        function closeProjectDetail() {
+            const container = document.getElementById('projectDetailContainer');
+            container.classList.remove('active');
             document.body.style.overflow = 'auto';
+        }
+
+        function navigateProject(direction) {
+            if (direction === 'next') {
+                currentProjectIndex = (currentProjectIndex + 1) % projects.length;
+            } else if (direction === 'prev') {
+                currentProjectIndex = (currentProjectIndex - 1 + projects.length) % projects.length;
+            }
+            
+            openProjectDetail(currentProjectIndex + 1);
         }
 
         // Image Modal Functions
@@ -2424,41 +3196,34 @@
             modalImage.src = imageSrc;
             modalImage.alt = imageSrc;
             
-            modal.style.display = 'block';
+            modal.classList.add('active');
             document.body.style.overflow = 'hidden';
-            
-            setTimeout(() => {
-                modal.classList.add('show');
-            }, 10);
         }
 
         function closeImageModal() {
             const modal = document.getElementById('imageModal');
-            modal.classList.remove('show');
-            setTimeout(() => {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }, 300);
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
 
         // Close modal when clicking outside
         window.addEventListener('click', function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (event.target === modal) {
-                    if (modal.id === 'imageModal') {
-                        closeImageModal();
-                    } else {
-                        closeProjectModal();
-                    }
-                }
-            });
+            const projectDetailContainer = document.getElementById('projectDetailContainer');
+            const imageModal = document.getElementById('imageModal');
+            
+            if (event.target === projectDetailContainer) {
+                closeProjectDetail();
+            }
+            
+            if (event.target === imageModal) {
+                closeImageModal();
+            }
         });
 
         // Close modal with Escape key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
-                closeProjectModal();
+                closeProjectDetail();
                 closeImageModal();
             }
         });
@@ -2468,8 +3233,8 @@
             card.addEventListener('click', function(e) {
                 // Don't open modal if clicking the "View Details" link
                 if (!e.target.closest('.project-link')) {
-                    const projectId = this.querySelector('.project-link').getAttribute('onclick').match(/'([^']+)'/)[1];
-                    openProjectModal(projectId);
+                    const projectId = parseInt(this.getAttribute('data-project'));
+                    openProjectDetail(projectId);
                 }
             });
         });
