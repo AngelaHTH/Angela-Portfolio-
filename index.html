@@ -224,7 +224,7 @@
             left: 0;
             right: 0;
             height: 100%;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%235d8aa8' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+            background: transparent; /* Changed from SVG pattern to transparent */
             opacity: 0.3;
             z-index: 0;
             animation: parallax 20s linear infinite;
@@ -724,6 +724,7 @@
             overflow: hidden;
         }
 
+        /* Remove the dot pattern from project detail header */
         .project-detail-header::before {
             content: '';
             position: absolute;
@@ -731,7 +732,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            background: transparent; /* Changed from SVG pattern to transparent */
             opacity: 0.2;
             animation: parallax 20s linear infinite;
         }
@@ -1409,7 +1410,7 @@
 
         /* Enhanced Footer */
         .footer {
-            background: #2C3E50;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: white;
             padding: 70px 0 40px;
             position: relative;
@@ -1423,7 +1424,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            background: transparent; 
             opacity: 0.3;
             z-index: 0;
             animation: parallax 30s linear infinite;
@@ -1452,7 +1453,7 @@
         }
 
         .footer-text {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 30px;
             font-size: 1rem;
             max-width: 600px;
@@ -1473,7 +1474,7 @@
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1492,14 +1493,15 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: var(--gradient);
+            background: rgba(255, 255, 255, 0.2);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: -1;
         }
 
         .social-link:hover {
+            background: rgba(255, 255, 255, 0.25);
             transform: translateY(-5px) scale(1.1) rotate(5deg);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
         .social-link:hover::before {
@@ -1509,8 +1511,8 @@
         .footer-bottom {
             text-align: center;
             padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.8);
             font-size: 0.9rem;
             position: relative;
             z-index: 1;
@@ -2457,6 +2459,18 @@
                     <p class="section-subtitle">Technical expertise and professional credentials</p>
                 </div>
                 <div class="skills-grid">
+
+                    <div class="skill-category fade-in">
+                        <h3><i class="fas fa-certificate"></i> Certifications</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">SnowFlake Associate</span>
+                            <span class="skill-tag">Google Data Analytics</span>
+                            <span class="skill-tag">Google AI Essentials</span>
+                            <span class="skill-tag">Google Digital Marketing</span>
+                            <span class="skill-tag">Alibaba Cloud Computing & AI</span>
+                        </div>
+                    </div>
+
                     <div class="skill-category fade-in">
                         <h3><i class="fas fa-code"></i> Technical Skills</h3>
                         <div class="skill-tags">
@@ -2472,16 +2486,7 @@
                             <span class="skill-tag">UI/UX Design</span>
                         </div>
                     </div>
-                    <div class="skill-category fade-in">
-                        <h3><i class="fas fa-certificate"></i> Certifications</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">SnowFlake Associate</span>
-                            <span class="skill-tag">Google Data Analytics</span>
-                            <span class="skill-tag">Google AI Essentials</span>
-                            <span class="skill-tag">Google Digital Marketing</span>
-                            <span class="skill-tag">Alibaba Cloud Computing & AI</span>
-                        </div>
-                    </div>
+
                     <div class="skill-category fade-in">
                         <h3><i class="fas fa-users"></i> Professional Skills</h3>
                         <div class="skill-tags">
@@ -2545,17 +2550,17 @@
                         <h3 class="exp-title">Polytechnic Foundation Program Club</h3>
                         <h4 class="exp-subtitle">Head of Community Engagement</h4>
                         <div class="exp-date">Mar 2025 - Apr 2026</div>
-                        <p class="exp-description">Led "Adopt a Block" sustainability events and "Project Rejuv" elderly home revitalization initiatives, fostering community engagement and promoting sustainable practices.</p>
+                        <p class="exp-description">Led "Adopt a Block" sustainability events and "Project Rejuv" elderly home revitalization initiatives. Coordinated "PFP Peer Tutoring" program to help students prepare for math ICA, engaging studentsand promoting sustainable practices.</p>
                     </div>
 
                     <div class="exp-card fade-in">
                         <div class="exp-icon">
-                            <i class="fas fa-hands-helping"></i>
+                            <i class="fas fa-wallet"></i>
                         </div>
                         <h3 class="exp-title">Polytechnic Foundation Program Club</h3>
-                        <h4 class="exp-subtitle">Head of Treasurer </h4>
+                        <h4 class="exp-subtitle">Head of Treasurer</h4>
                         <div class="exp-date">Feb 2024 - Mar 2025</div>
-                        <p class="exp-description">Led "Adopt a Block" sustainability events and "Project Rejuv" elderly home revitalization initiatives, fostering community engagement and promoting sustainable practices.</p>
+                        <p class="exp-description">Managed club finances budgeting, expenditure tracking and financial reporting. Ensured logistical efficiency and all events stay within allocated budgets. Planned and executed events such as PFP Graduation Ceremony overseeing procurement and resource allocation.</p>
                     </div>
                 </div>
             </div>
@@ -2569,7 +2574,7 @@
                 <div class="contact-section">
                     <h2 class="contact-title">Let's Work Together</h2>
                     <p class="contact-text">
-                        I'm currently seeking internship opportunities in data analytics, business intelligence, or fintech. 
+                        I'm currently seeking job opportunities in data analytics, business intelligence or fintech. 
                         Let's discuss how I can contribute to your team with data-driven insights.
                     </p>
                     <div class="contact-buttons">
